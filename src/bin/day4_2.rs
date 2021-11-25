@@ -55,11 +55,7 @@ fn main() {
         })
         .filter(|passport| {
             let re = Regex::new(r"^#([0-9a-f]+)$").unwrap();
-            let result = re.captures(passport["hcl"]);
-            match result {
-                Some(value) => value.get(1).is_some(),
-                None => false
-            }
+            re.is_match(passport["hcl"])
         })
         .filter(|passport| {
             let ecl = passport["ecl"];
