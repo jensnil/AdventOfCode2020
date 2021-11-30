@@ -1,5 +1,4 @@
 use std::fs;
-use std::ops::Deref;
 
 fn main() {
     let filename = "input/day09.txt";
@@ -19,7 +18,7 @@ fn main() {
                 first + second
             }).collect::<Vec<i64>>()
         }).flatten().collect::<Vec<i64>>();
-        if (!sums.contains(&numbers[i])) {
+        if !sums.contains(&numbers[i]) {
             println!("{}", numbers[i]);
             break;
         }
