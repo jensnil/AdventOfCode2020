@@ -28,7 +28,7 @@ fn extended_euclidean_algorithm(a : i128, b : i128) -> (i128, i128, i128) {
 
     while r != 0 {
         let quotient = old_r / r;
-        let remainder = old_r.rem_euclid(r);
+        let remainder = old_r % r;
         old_r = r;
         r = remainder;
 
@@ -58,9 +58,8 @@ fn main() {
         .map(|it| { (it.1.parse().unwrap(), it.0 as i128) })
         .collect::<Vec<(i128, i128)>>();
 
-    let buses_clone = buses.clone();
-    let first = buses_clone.first().unwrap().clone();
-    let folding = buses_clone.into_iter().skip(1).fold(first, |agg, it| {
+    let first = buses.first().unwrap().clone();
+    let folding = buses.into_iter().skip(1).fold(first, |agg, it| {
         find_alignment(agg, it)
     });
     println!("Done: {}", folding.0 - folding.1.rem_euclid(folding.0));
